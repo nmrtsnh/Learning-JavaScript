@@ -23,14 +23,14 @@ const heightOfMark = 1.69;
 
 // const checkBMIofMark = weightofMark / heightOfMark ** 2;
 const BMIofMark = weightofMark / (heightOfMark * heightOfMark);
-console.log(BMIofMark);
+// console.log(BMIofMark);
 
 const weightofJohn = 92;
 const heightofJohn = 1.95;
 
 // const checkBMIofJohn = weightofJohn / heightofJohn ** 2;
 const BMIofJohn = weightofJohn / (heightofJohn * heightofJohn);
-console.log(BMIofJohn);
+// console.log(BMIofJohn);
 
 const markHigherBMI = BMIofMark > BMIofJohn;
-console.log(markHigherBMI);
+// console.log(markHigherBMI);
