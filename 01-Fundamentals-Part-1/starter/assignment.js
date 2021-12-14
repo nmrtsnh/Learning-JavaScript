@@ -2,14 +2,14 @@
 
 const country = "Germany";
 const continent = "Europe";
-let population = 83.24;
+let population = 82;
 const isIsland = false;
-language = "German";
+const language = "German";
 const description = `${country} is in ${continent}, and its ${population} million people speak ${language} `;
 // console.log(description);
 
 // console.log(population / 2);
-population++;
+// population++;
 // console.log(population / 2);
 // population = 13;
 
@@ -55,6 +55,7 @@ console.log("123" < 57);
 console.log(5 + 6 + "4" + 9 - 4 - 2);
 */
 
+/*
 const numNeighbours = Number(
   prompt("How many neighbour countries does your country have?")
 );
@@ -65,4 +66,11 @@ if (numNeighbours === 1) {
   console.log("More than 1 border");
 } else {
   console.log("No borders");
+}
+*/
+
+if (language === "English" && population < 50 && !isIsland) {
+  console.log(`You should live in ${country}`);
+} else {
+  console.log(`${country} does not meet your criteria`);
 }
