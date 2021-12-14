@@ -5,22 +5,7 @@ const continent = "Europe";
 let population = 83.24;
 const isIsland = false;
 language = "German";
-const description =
-  country +
-  " " +
-  "is " +
-  "in " +
-  continent +
-  "," +
-  " " +
-  "and " +
-  "its " +
-  population +
-  " " +
-  "million " +
-  "people " +
-  "speak " +
-  language;
+const description = `${country} is in ${continent}, and its ${population} million people speak ${language} `;
 console.log(description);
 
 console.log(population / 2);
