@@ -1,0 +1,31 @@
+var _shoppingCartJs = require('./shoppingCart.js');
+var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
+var _shoppingCartJsDefault = _parcelHelpers.interopDefault(_shoppingCartJs);
+var _lodash = require('lodash');
+var _lodashDefault = _parcelHelpers.interopDefault(_lodash);
+// //importing modules
+// import { addToCart, totalPrice as price, tq } from './shoppingCart.js';
+// addToCart('bread', 5);
+// console.log(price, tq);
+console.log('Importing module');
+_shoppingCartJsDefault.default('pizza', 2);
+_shoppingCartJsDefault.default('bread', 5);
+_shoppingCartJsDefault.default('apple', 4);
+console.log(_shoppingCartJs.cart);
+const state = {
+  cart: [{
+    product: 'bread',
+    quantity: 5
+  }, {
+    product: 'pizza',
+    quantity: 4
+  }],
+  user: {
+    loggedIn: true
+  }
+};
+const stateClone = Object.assign({}, state);
+const stateDeepClone = _lodashDefault.default(state);
+state.user.loggedIn = false;
+console.log(stateClone);
+console.log(stateDeepClone);
