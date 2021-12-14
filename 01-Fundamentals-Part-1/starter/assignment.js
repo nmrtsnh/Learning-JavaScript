@@ -2,7 +2,8 @@
 
 const country = "Germany";
 const continent = "Europe";
-const population = 83.24;
+let population = 83.24;
+population = 82;
 
 console.log(country);
 console.log(continent);
@@ -10,8 +11,9 @@ console.log(population);
 
 // Data Types
 
-let isIsland = false;
-let language;
+const isIsland = false;
+language = "German";
+
 console.log(typeof isIsland);
 console.log(typeof population);
 console.log(typeof country);
