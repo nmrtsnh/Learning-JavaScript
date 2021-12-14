@@ -48,8 +48,10 @@ Hint: Use an if/else statement �
 
 /// Solution
 
+/*
 if (BMIofMark > BMIofJohn) {
   console.log(`Mark's BMI ${BMIofMark} is higher than John's ${BMIofJohn}`);
 } else {
   console.log(`John's BMI ${BMIofJOHN} is higher than Mark's ${BMIofMark}`);
 }
+*/
