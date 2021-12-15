@@ -3,6 +3,14 @@
 const country = "Germany";
 const continent = "Europe";
 let population = 82;
+
+/// The Conditional (Ternary) Operator
+console.log(
+  `${continent}'s population is ${
+    population > 30 ? "above average" : "below average"
+  }`
+);
+
 const isIsland = false;
 const language = "German";
 
