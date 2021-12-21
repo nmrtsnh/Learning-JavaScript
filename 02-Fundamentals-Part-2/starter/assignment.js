@@ -59,7 +59,7 @@ const describePopulation = function (country, population) {
 
 const population = [1393, 89, 67, 60];
 
-console.log(population.length === 4);
+// console.log(population.length === 4);
 
 const percentages = [
   percentageOfWorld1(population[0]),
@@ -67,4 +67,28 @@ const percentages = [
   percentageOfWorld1(population[2]),
   percentageOfWorld1(population[population.length - 1]),
 ];
-console.log(percentages);
+// console.log(percentages);
+
+const neighbours = [
+  "Denmark",
+  "Poland",
+  "Czech Republic",
+  "Switzerland",
+  "Austria",
+];
+
+neighbours.push("Utopia");
+console.log(neighbours);
+
+neighbours.pop();
+console.log(neighbours);
+
+if (!neighbours.includes("Germany")) {
+  console.log("Probably not a Central European Country");
+}
+
+const index = neighbours.indexOf("Poland");
+console.log(index);
+
+neighbours[index] = "Republic of Sweden";
+console.log(neighbours);
