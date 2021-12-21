@@ -48,3 +48,23 @@ const describePopulation = function (country, population) {
 // console.log(describePopulation("India", 1393));
 // console.log(describePopulation("Germany", 89));
 // console.log(describePopulation("France", 67));
+
+/////// Assignment
+
+/* Introduction to Arrays
+1. Create an array containing 4 population values of 4 countries of your choice. You may use the values you have been using previously. Store this array into a variable called 'populations'
+2. Log to the console whether the array has 4 elements or not (true or false)
+3. Create an array called 'percentages' containing the percentages of the world population for these 4 population values. Use the function 'percentageOfWorld1' that you created earlier to compute the 4 percentage values
+*/
+
+const population = [1393, 89, 67, 60];
+
+console.log(population.length === 4);
+
+const percentages = [
+  percentageOfWorld1(population[0]),
+  percentageOfWorld1(population[1]),
+  percentageOfWorld1(population[2]),
+  percentageOfWorld1(population[population.length - 1]),
+];
+console.log(percentages);
