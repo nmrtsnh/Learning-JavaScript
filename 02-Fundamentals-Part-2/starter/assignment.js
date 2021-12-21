@@ -78,17 +78,17 @@ const neighbours = [
 ];
 
 neighbours.push("Utopia");
-console.log(neighbours);
+// console.log(neighbours);
 
 neighbours.pop();
-console.log(neighbours);
+// console.log(neighbours);
 
 if (!neighbours.includes("Germany")) {
-  console.log("Probably not a Central European Country");
+  // console.log("Probably not a Central European Country");
 }
 
 const index = neighbours.indexOf("Poland");
-console.log(index);
+// console.log(index);
 
 neighbours[index] = "Republic of Sweden";
-console.log(neighbours);
+// console.log(neighbours);
