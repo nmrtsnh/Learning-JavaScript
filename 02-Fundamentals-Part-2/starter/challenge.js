@@ -19,59 +19,27 @@ Hints:
 § To check if number A is at least double number B, check for A >= 2 * B. 
 */
 
-// const dolphinsScore1 = 44;
-// const dolphinsScore2 = 23;
-// const dolphinsScore3 = 71;
+calcAverage = (score1, score2, score3) => (score1 + score2 + score3) / 3;
 
-// const koalasScore1 = 65;
-// const koalasScore2 = 54;
-// const koalasScore3 = 49;
+let scoreDolphins = calcAverage(44, 23, 71);
+let scoreKoalas = calcAverage(65, 54, 49);
+console.log(scoreDolphins, scoreKoalas);
 
-// const calcAverage1 = (avgDolphins) =>
-//   (dolphinsScore1 + dolphinsScore2 + dolphinsScore3) / 3;
-
-// const calcAverage2 = (avgKoalas) =>
-//   (koalasScore1 + koalasScore2 + koalasScore3) / 3;
-
-// const checkWinner1 = function checkWinner(avgDolphins, avgKoalas) {
-//   if (avgDolphins >= 2 * avgKoalas) {
-//     console.log(`Dolphin wins (${avgDolphins} vs ${avgKoalas})`);
-//   } else if (avgKoalas >= 2 * avgDolphins) {
-//     console.log(`Koalas wins (${avgKoalas} vs ${avgDolphins})`);
-//   } else {
-//     console.log("No body wins");
-//   }
-// };
-
-// console.log(checkWinner1(44, 23, 71, 102, 54, 49));
-
-const avg1 = function calcAverage1(avgDolphins) {
-  const average1 = avgDolphins / 3;
-
-  return average1;
-};
-
-const avg2 = function calcAverage2(avgKoalas) {
-  const average2 = avgKoalas / 3;
-  return average2;
-};
-
-// console.log(avg1(200, 23, 71));
-// console.log(avg2(65, 54, 49));
-
-const checkWinnerNow = function checkWinner(avgDolphins, avgKoalas) {
-  const avgD = avg1(avgDolphins);
-  const avgK = avg2(avgKoalas);
-  if (avgD >= 2 * avgK) {
-    console.log(`Dolphin wins (${avgD} vs ${avgK})`);
-  } else if (avgK >= 2 * avgD) {
-    console.log(`Koalas wins (${avgK} vs ${avgD})`);
+const checkWinner = function (avgDolphins, avgKoalas) {
+  if (avgDolphins >= 2 * avgKoalas) {
+    console.log(`Dolphins win (${avgDolphins} vs ${avgKoalas})`);
+  } else if (avgKoalas >= 2 * avgDolphins) {
+    console.log(`Koalas wins (${avgKoalas} vs ${avgDolphins})`);
+  } else {
+    console.log("No one wins");
   }
-
-  //   return avgD;
-  //   return avgK;
 };
 
-// console.log(checkWinnerNow(44, 23, 71));
+checkWinner(scoreDolphins, scoreKoalas);
 
-// console.log(checkWinnerNow(200, 54, 49));
+//Test 2
+
+scoreDolphins = calcAverage(85, 54, 41);
+scoreKoalas = calcAverage(23, 34, 27);
+console.log(scoreDolphins, scoreKoalas);
+checkWinner(scoreDolphins, scoreKoalas);
