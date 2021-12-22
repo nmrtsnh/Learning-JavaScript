@@ -114,9 +114,9 @@ const myCountry = {
   },
 };
 
-console.log(myCountry);
-console.log(myCountry.describe());
-console.log(myCountry.checkIsIsland());
+// console.log(myCountry);
+// console.log(myCountry.describe());
+// console.log(myCountry.checkIsIsland());
 
 //LECTURE: Dot vs. Bracket Notation
 
@@ -125,9 +125,9 @@ console.log(myCountry.checkIsIsland());
 2. Increase the country's population by two million using dot notation, and then decrease it by two million using brackets notation.
 */
 
-console.log(
-  `${myCountry.country} has ${myCountry.population} million ${myCountry.language}-speaking people, ${myCountry.neighbours.length} neighbouring countries and a capital city called ${myCountry.capital}`
-);
+// console.log(
+//   `${myCountry.country} has ${myCountry.population} million ${myCountry.language}-speaking people, ${myCountry.neighbours.length} neighbouring countries and a capital city called ${myCountry.capital}`
+// );
 
 ////LECTURE: Object Methods
 
@@ -152,7 +152,7 @@ const jonas = {
 };
 //Jonas is a 46 year old teacher, and he has a driver's licence
 
-console.log(jonas.getSummary());
+// console.log(jonas.getSummary());
 
 /*
 1. Add a method called 'describe' to the 'myCountry' object. This method will log a string to the console, similar to the string logged in the previous assignment, but this time using the 'this' keyword.
