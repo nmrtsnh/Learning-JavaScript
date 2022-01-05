@@ -121,15 +121,15 @@ const john = {
   },
 };
 
-console.log(mark.calcBMI());
-console.log(john.calcBMI());
+// console.log(mark.calcBMI());
+// console.log(john.calcBMI());
 
-if (mark.BMI > john.BMI) {
-  console.log(
-    `${mark.fullName}'s BMI (${mark.BMI}) is higher than john's (${john.BMI})`
-  );
-} else {
-  console.log(
-    `${john.fullName}'s BMI (${john.BMI}) is higher than mark's (${mark.BMI})`
-  );
-}
+// if (mark.BMI > john.BMI) {
+//   console.log(
+//     `${mark.fullName}'s BMI (${mark.BMI}) is higher than john's (${john.BMI})`
+//   );
+// } else {
+//   console.log(
+//     `${john.fullName}'s BMI (${john.BMI}) is higher than mark's (${mark.BMI})`
+//   );
+// }
