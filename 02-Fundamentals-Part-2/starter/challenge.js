@@ -18,7 +18,7 @@ Hints:
 § To calculate average of 3 values, add them all together and divide by 3
 § To check if number A is at least double number B, check for A >= 2 * B. 
 */
-
+/*
 calcAverage = (score1, score2, score3) => (score1 + score2 + score3) / 3;
 
 let scoreDolphins = calcAverage(44, 23, 71);
@@ -36,13 +36,16 @@ const checkWinner = function (avgDolphins, avgKoalas) {
 };
 
 checkWinner(scoreDolphins, scoreKoalas);
+*/
 
 //Test 2
 
+/*
 scoreDolphins = calcAverage(85, 54, 41);
 scoreKoalas = calcAverage(23, 34, 27);
 // console.log(scoreDolphins, scoreKoalas);
 checkWinner(scoreDolphins, scoreKoalas);
+*/
 
 //// Coding Challenge #2
 
@@ -64,23 +67,23 @@ GOOD LUCK �
 */
 let bill = 100;
 
-const calcTip = function (bill) {
-  if (bill >= 50 && bill <= 300) {
-    return (15 / 100) * bill;
-  } else {
-    return (20 / 100) * bill;
-  }
-};
+// const calcTip = function (bill) {
+//   if (bill >= 50 && bill <= 300) {
+//     return (15 / 100) * bill;
+//   } else {
+//     return (20 / 100) * bill;
+//   }
+// };
 
 // console.log(calcTip(100));
 
-const bills = [125, 555, 44];
+// const bills = [125, 555, 44];
 
-const tips = [calcTip(bills[0]), calcTip(bills[1]), calcTip(bills[2])];
+// const tips = [calcTip(bills[0]), calcTip(bills[1]), calcTip(bills[2])];
 
-// console.log(tips);
+// // console.log(tips);
 
-const total = [bills[0] + tips[0], bills[1] + tips[1], bills[2] + tips[2]];
+// const total = [bills[0] + tips[0], bills[1] + tips[1], bills[2] + tips[2]];
 // console.log(total);
 
 //// Coding Challenge #3
@@ -133,3 +136,61 @@ const john = {
 //     `${john.fullName}'s BMI (${john.BMI}) is higher than mark's (${mark.BMI})`
 //   );
 // }
+
+//// Coding Challenge #4
+
+/*
+Let's improve Steven's tip calculator even more, this time using loops!
+
+Your tasks:
+1. Create an array 'bills' containing all 10 test bill values
+2. Create empty arrays for the tips and the totals ('tips' and 'totals')
+3. Use the 'calcTip' function we wrote before (no need to repeat) to calculate tips and total values (bill + tip) for every bill value in the bills array. Use a for loop to perform the 10 calculations!
+
+Test data: 22, 295, 176, 440, 37, 105, 10, 1100, 86 and 52
+
+Hints: Call ‘calcTip ‘in the loop and use the push method to add values to the tips and totals arrays �
+
+Bonus:
+
+4. Bonus: Write a function 'calcAverage' which takes an array called 'arr' as an argument. This function calculates the average of all numbers in the given array. This is a difficult challenge (we haven't done this before ! Here is how to solve it:
+4.1. First, you will need to add up all values in the array. To do the addition, start by creating a variable 'sum' that starts at 0. Then loop over the
+array using a for loop. In each iteration, add the current value to the 'sum' variable. This way, by the end of the loop, you have all values added together
+4.2. To calculate the average, divide the sum you calculated before by the length of the array (because that's the number of elements)
+4.3. Call the function with the 'totals' array
+*/
+
+/// Solution
+
+const calcTip = function (bill) {
+  if (bill >= 50 && bill <= 300) {
+    return (15 / 100) * bill;
+  } else {
+    return (20 / 100) * bill;
+  }
+};
+
+const bills = [22, 295, 176, 440, 37, 105, 10, 1100, 86, 52];
+
+const tips = [];
+const totals = [];
+
+for (let x = 0; x < bills.length; x++) {
+  tips.push(calcTip(bills[x]));
+  totals.push(bills[x] + tips[x]);
+}
+
+console.log(bills);
+console.log(tips);
+console.log(totals);
+
+const calcAverage = function (arr) {
+  let sum = 0;
+  for (let i = 0; i < arr.length; i++) {
+    sum += arr[i];
+  }
+  return sum / arr.length;
+};
+
+calcAverage([2, 3, 4]);
+console.log(calcAverage(totals));

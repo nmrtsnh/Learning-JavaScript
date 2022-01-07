@@ -226,4 +226,4 @@ while (i < populations.length) {
   precentages3.push(percentageOfWorld1(populations[i]));
   i++;
 }
-console.log(precentages3);
+// console.log(precentages3);

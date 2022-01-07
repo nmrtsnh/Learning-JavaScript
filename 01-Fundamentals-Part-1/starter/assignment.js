@@ -37,7 +37,7 @@ switch (language) {
     break;
 
   default:
-    console.log("Great language too");
+  // console.log("Great language too");
 }
 
 const description = `${country} is in ${continent}, and its ${population} million people speak ${language} `;
