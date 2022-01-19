@@ -134,6 +134,8 @@ jonas.greet(); // An arrow function does not get it's own this keyword.
 /// As a best practice, you should never use arrouw function as a method.
 */
 
+/*
+
 const jonas = {
   firstName: 'Jonas',
   year: 1991,
@@ -179,3 +181,63 @@ var addArrow = () => {
   return a + b;
 };
 addArrow(2, 5, 8);
+*/
+
+/*
+//// Primitive types
+let age = 30;
+let oldAge = age;
+age = 31;
+console.log(age);
+console.log(oldAge);
+
+//// Reference types
+const me = {
+  name: 'jonas',
+  age: 30,
+};
+console.log(me);
+
+const friend = me;
+friend.age = 27;
+console.log('Friend:', friend);
+console.log('Me:', me);
+*/
+
+//// Primitive Types
+let lastName = 'Williams';
+let oldLastName = lastName;
+lastName = 'Davis';
+
+console.log(lastName, oldLastName);
+
+//// Reference Types
+const jessica = {
+  firstName: 'Jessica',
+  lastName: 'Williams',
+  age: 27,
+};
+
+const marriedJessica = jessica;
+marriedJessica.lastName = 'Davis';
+
+console.log('Jessica:', jessica);
+console.log('Married Jessica:', marriedJessica);
+// marriedJessica = {};
+
+//// Copying Objects
+const jessica2 = {
+  firstName: 'Jessica',
+  lastName: 'Williams',
+  age: 27,
+  family: ['Alice', 'Bob'],
+};
+
+const jessicaCopy = Object.assign({}, jessica2);
+jessicaCopy.lastName = 'Davis';
+
+jessicaCopy.family.push('Mary');
+jessicaCopy.family.push('John');
+
+console.log('Jessica:', jessica2);
+console.log('Married Jessica:', jessicaCopy);
