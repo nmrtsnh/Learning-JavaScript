@@ -42,8 +42,63 @@ const restaurant = {
       `Order Receivd! ${this.starterMenu[startingIndex]} and ${this.mainMenu[mainIndex]} will be deliverd to ${address} at ${time}`
     );
   },
+  orderPasta: function (ing1, ing2, ing3) {
+    console.log(
+      `Here is your delicious pasta with ${ing1}, ${ing2}, and ${ing3}`
+    );
+  },
 };
 
+const arr = [7, 8, 9];
+const badNewArr = [1, 2, 3, arr[0], arr[1], arr[2]];
+console.log(badNewArr);
+
+const newArr = [1, 2, 3, ...arr];
+console.log(newArr);
+
+console.log(...newArr);
+
+const newMenu = [...restaurant.mainMenu, 'Gnoochi'];
+console.log(newMenu);
+
+/// Copy array
+const mainMenuCopy = [...restaurant.mainMenu];
+console.log(mainMenuCopy);
+
+/// Join 2 arrays
+const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
+console.log(menu);
+
+//// Iterables: arrays, strings, maps, sets. NOT objects.
+const str = 'Jonas';
+const letters = [...str, ' ', 's'];
+console.log(letters);
+/// We can only use the spread operator when building an array or when we pass a value into a function.
+console.log(...str);
+// console.log(`${...str} Schmedtmann`); /// Multiple values seperated by a comma are usually only expected when we pass argument into a function or when we build a new array
+
+/// Real World Example
+const ingredients = [
+  // prompt("Let's make your pasta! Ingredients 1?"),
+  // prompt('Ingredients 2?'),
+  // prompt('Ingredients 3?'),
+];
+
+restaurant.orderPasta(ingredients[0], ingredients[1], ingredients[2]);
+
+restaurant.orderPasta(...ingredients);
+
+//Objects
+const newRestaurant = { foundedIn: 1998, ...restaurant, founder: 'Guiseppe' };
+console.log(newRestaurant);
+
+const restaurantCopy = { ...restaurant };
+restaurantCopy.name = 'Ristorante Roma';
+console.log(restaurantCopy.name);
+console.log(restaurant.name);
+
+////////////////////////////////////
+/*
 restaurant.orderDelivery({
   time: '22:00',
   address: 'Via Del Sol, 21',
@@ -79,6 +134,8 @@ const {
   fri: { open: o, close: c },
 } = openingHours;
 console.log(o, c);
+*/
+
 /*
 /////////////////////////////
 
