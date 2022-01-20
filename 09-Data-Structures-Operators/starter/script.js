@@ -53,6 +53,90 @@ const restaurant = {
   },
 };
 
+const rest1 = {
+  name: 'Capri',
+  numGuests: 20,
+};
+
+const rest2 = {
+  name: 'La Piazza',
+  owner: 'Giovanni Rossi',
+};
+
+// OR assignment operator
+// rest1.numGuests = rest1.numGuests || 10;
+// rest2.numGuests = rest2.numGuests || 10;
+
+// rest1.numGuests ||= 10;
+// rest2.numGuests ||= 10;
+// console.log(rest1);
+// console.log(rest2);
+
+// Nullish assignment operator ( Null or undefined)
+rest1.numGuests ??= 10;
+rest2.numGuests ??= 10;
+
+// AND assignment operator
+// rest1.owner = rest1.owner && '<ANONYMOUS>';
+// rest2.owner = rest2.owner && '<ANONYMOUS>';
+
+rest1.owner &&= '<ANONYMOUS>';
+rest2.owner &&= '<ANONYMOUS>';
+
+console.log(rest1);
+console.log(rest2);
+/*
+////////////////////////////
+// The Nullish Coalescing Operator
+
+restaurant.numGuests = 0;
+const guests = restaurant.numGuests || 10;
+console.log(guests);
+
+/// Nullish: null & undefined ( NOT 0 or "")
+const guestCorrect = restaurant.numGuests ?? 10;
+console.log(guestCorrect);
+*/
+
+/*
+/////////////////////////
+
+// Short circutting (&& and ||)
+// Three properties of logical operators: Use ANY data type, return ANY data type, short-circutting
+
+console.log('----- OR -----');
+console.log(3 || 'Jonas');
+console.log('' || 'Jonas');
+console.log(true || 0);
+console.log(undefined || null);
+
+console.log(undefined || 0 || '' || 'Jonas' || 23 || null);
+
+restaurant.numGuests = 23;
+const guests1 = restaurant.numGuests ? restaurant.numGuests : 10;
+console.log(guests1);
+
+const guests2 = restaurant.numGuests || 10;
+console.log(guests2);
+
+console.log('----- AND -----');
+console.log(0 && 'Jonas');
+console.log(2 && 'Jonas');
+
+/// Practical Example
+
+if (restaurant.orderPizza) {
+  restaurant.orderPizza('mushrooms', 'spinach');
+}
+
+restaurant.orderPizza && restaurant.orderPizza('mushrooms', 'spinach');
+
+*/
+
+/*
+
+////// Rest Pattern and Parameters
+
 // 1. Destructuring
 
 // Spread, because on RIGHT side of =
@@ -91,6 +175,11 @@ add(...x);
 
 restaurant.orderPizza('mushroom', 'chicken', 'olives', 'spinach');
 restaurant.orderPizza('mushroom');
+
+//// The Spread and Rest syntax both looks exactly the same but they work in opposite ways depending on where they are used.
+// The spread operator used where we would otherwise write values seperated by a comma.
+// The Rest patter is basically used where we would otherwise write variables name seperated by commas
+*/
 
 /*
 
