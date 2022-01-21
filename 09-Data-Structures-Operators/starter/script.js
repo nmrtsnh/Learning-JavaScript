@@ -1,6 +1,4 @@
 'use strict';
-
-'use strict';
 /*
 // Data needed for a later exercise
 const flights =
@@ -55,6 +53,77 @@ const restaurant = {
   },
 };
 
+/*
+/////////////////////////////////////////////
+// Maps Fundamentals
+
+const rest = new Map();
+rest.set('name', 'Classico Italiano');
+rest.set(1, 'Frienze, Italy');
+console.log(rest.set(2, 'Lisbon, Portugal'));
+
+rest
+  .set('categories', ['Italian', 'Pizzeria', 'Vegetarian', 'Organic'])
+  .set('open', 11)
+  .set('close', 23)
+  .set(true, 'We are open :)')
+  .set(false, 'We are closed :(');
+
+console.log(rest.get('name'));
+console.log(rest.get(1));
+console.log(rest.get(2));
+console.log(rest.get(true));
+console.log(rest.get(false));
+console.log(rest.get('categories'));
+
+const time = 12;
+
+console.log(rest.get(time > rest.get('open') && time < rest.get('close')));
+
+console.log(rest.has('categories'));
+rest.delete(2);
+// rest.clear();
+
+const arr = [1, 2];
+rest.set(arr, 'Test');
+console.log(rest);
+console.log(rest.size);
+
+console.log(rest.get(arr));
+*/
+
+/*
+//////////////////////////////
+
+/// SETS
+const orderSet = new Set(['Pizza', 'Pasta', 'Pizza', 'Risotto', 'Pasta']);
+console.log(orderSet);
+
+console.log(new Set('Namrata'));
+console.log(new Set());
+console.log(orderSet.size);
+console.log(orderSet.has('Pizza'));
+console.log(orderSet.has('Garlic Bread'));
+
+orderSet.add('Garlic Bread');
+console.log(orderSet);
+orderSet.delete('Risotto');
+// orderSet.clear();
+console.log(orderSet);
+
+for (const order of orderSet) console.log(order);
+
+// Example
+
+const staff = ['Chef', 'Waiter', 'Manager', 'Chef', 'Waiter'];
+const staffUnique = [...new Set(staff)];
+console.log(staffUnique);
+
+console.log(new Set('Chef', 'Waiter', 'Manager', 'Chef', 'Waiter').size);
+*/
+
+/*
+///////////////////////////////////
 //// Property Names
 
 const Property = Object.keys(openingHours);
@@ -80,6 +149,7 @@ console.log(entries);
 for (const [day, { open, close }] of entries) {
   console.log(`On ${day}, we are open at ${open}, close at ${close}`);
 }
+*/
 /*
 ////////////////////////////////////////////////////
 // Optional Chaining
@@ -558,9 +628,3 @@ for (const player of game.scored) {
   scores[player] ? scores[player]++ : (scores[player] = 1);
 }
 */
-
-const orderSet = new Set(['Pizza', 'Pasta', 'Pizza', 'Risotto', 'Pasta']);
-console.log(orderSet);
-
-console.log(new Set('Namrata'));
-console.log(new Set());
