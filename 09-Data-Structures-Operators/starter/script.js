@@ -38,6 +38,10 @@ const restaurant = {
       `Order Received! ${this.starterMenu[starterIndex]} and ${this.mainMenu[mainIndex]} will be delivered to ${address} at ${time}`
     );
   },
+
+  orderPasta: function (ing1, ing2, ing3) {
+    console.log(`Here is your delicious pasta with ${ing1}, ${ing2}, ${ing3}`);
+  },
 };
 
 const arr = [7, 8, 9];
@@ -63,6 +67,21 @@ console.log(mainMenuCopy);
 // Join 2 arryas
 const menuCopy = [...restaurant.starterMenu, ...restaurant.mainMenu];
 console.log(menuCopy);
+
+// Iterables: arrays, strings, map, sets, NOT object
+const str = 'Jonas';
+const letters = [...str, ' ', 's'];
+console.log(letters);
+// We can still only use the spread operator when building an array or when we pass values into a function.
+
+const ingredients = [
+  prompt("Let's make your pasta! Ingredient1?"),
+  prompt('ingredient2?'),
+  prompt('ingredient3?'),
+];
+console.log(ingredients);
+
+restaurant.orderPasta(...ingredients);
 /*
 /////////////////////////
 // Destructuring Objects
