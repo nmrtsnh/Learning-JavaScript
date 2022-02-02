@@ -32,7 +32,81 @@ const restaurant = {
   order: function (starterIndex, mainIndex) {
     return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
   },
+
+  orderDelivery: function ({ starterIndex = 0, mainIndex = 1, time, address }) {
+    console.log(
+      `Order Received! ${this.starterMenu[starterIndex]} and ${this.mainMenu[mainIndex]} will be delivered to ${address} at ${time}`
+    );
+  },
 };
+
+const arr = [7, 8, 9];
+const badArr = [1, 2, 3, 4, arr[0], arr[1], arr[2]];
+console.log(badArr);
+
+const newArr = [1, 2, 3, 4, ...arr];
+console.log(newArr);
+console.log(...newArr);
+
+const newMenu = [...restaurant.mainMenu, 'Gnoochi'];
+console.log(newMenu);
+//The spread operator takes all the elements from the array and it also doesn't create new variables and as a consequences we can only use it in a places where we would otherwise write values seperated by commas.
+
+// Two important usecases of spread operator
+// 1. To create shallow copies of arrays.
+// 2. To merge two arrays together
+
+// copy array
+const mainMenuCopy = [...restaurant.mainMenu];
+console.log(mainMenuCopy);
+
+// Join 2 arryas
+const menuCopy = [...restaurant.starterMenu, ...restaurant.mainMenu];
+console.log(menuCopy);
+/*
+/////////////////////////
+// Destructuring Objects
+
+restaurant.orderDelivery({
+  time: '22:30',
+  address: 'Via del Sole, 24',
+  starterIndex: 2,
+  mainIndex: 2,
+});
+
+restaurant.orderDelivery({
+  address: 'Via del sole, 24',
+  time: '20:00',
+});
+
+const { name, openingHours, categories } = restaurant;
+console.log(name, openingHours, categories);
+
+const {
+  name: restaurantName,
+  openingHours: hours,
+  categories: tags,
+} = restaurant;
+console.log(restaurantName, hours, tags);
+
+// Default Values
+const { menu = [], starterMenu: starters = [] } = restaurant;
+console.log(menu, starters);
+
+// Mutating Values
+let a = 111;
+let b = 222;
+const obj = { a: 25, b: 26, c: 27 };
+({ a, b } = obj);
+console.log(a, b);
+
+// Nested Object
+
+const {
+  fri: { open: o, close: c },
+} = openingHours;
+console.log(o, c);
+*/
 
 /*
 /////////////////////////////////
