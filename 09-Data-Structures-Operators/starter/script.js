@@ -40,9 +40,15 @@ const restaurant = {
   },
 
   orderPasta: function (ing1, ing2, ing3) {
-    console.log(`Here is your delicious pasta with ${ing1}, ${ing2}, ${ing3}`);
+    console.log(
+      `Here is your delicious pasta with ${ing1}, ${ing2}, and ${ing3}`
+    );
   },
 };
+
+/*
+///////////////////////////////
+// The Spread Operator (...)
 
 const arr = [7, 8, 9];
 const badArr = [1, 2, 3, 4, arr[0], arr[1], arr[2]];
@@ -74,14 +80,57 @@ const letters = [...str, ' ', 's'];
 console.log(letters);
 // We can still only use the spread operator when building an array or when we pass values into a function.
 
+// Real World Example
 const ingredients = [
-  prompt("Let's make your pasta! Ingredient1?"),
-  prompt('ingredient2?'),
-  prompt('ingredient3?'),
+  // prompt("Let's make your pasta! Ingredient1?"),
+  // prompt('ingredient2?'),
+  // prompt('ingredient3?'),
 ];
 console.log(ingredients);
 
+// restaurant.orderPasta(ingredients[0], ingredients[1], ingredients[2]);
 restaurant.orderPasta(...ingredients);
+
+const restaurantNew = { foundedIn: 1998, ...restaurant, founder: 'Guiseppe' };
+console.log(restaurantNew);
+
+const restaurantCopy = { ...restaurant };
+restaurantCopy.name = 'Ristorante Roma';
+console.log(restaurant.name);
+console.log(restaurantCopy.name);
+*/
+
+// 1. Destructuring
+
+// SPREAD, because on RIGHT side of =
+const arr = [1, 2, ...[3, 4]];
+
+// REST, because on LEFT side of =
+const [a, b, ...others] = [1, 2, 3, 4];
+console.log(a, b, others);
+
+const [pizza, risotto, , ...otherFoods] = [
+  ...restaurant.starterMenu,
+  ...restaurant.mainMenu,
+];
+console.log(pizza, risotto, otherFoods);
+
+// Objects
+const { sat, ...weekdays } = restaurant.openingHours;
+console.log(weekdays);
+
+// 2. Functions
+// With the SPREAD operator we extend, with the REST syntax we compress.
+
+const add = function (...numbers) {
+  let sum = 0;
+  for (let i = 0; i < numbers.length; i++) sum += numbers[i];
+  console.log(sum);
+};
+
+add(2, 3);
+add(2, 4, 1, 7, 8);
+add(5, 6, 2, 9, 4, 3, 6, 7, 8, 9);
 /*
 /////////////////////////
 // Destructuring Objects
