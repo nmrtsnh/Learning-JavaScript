@@ -55,6 +55,47 @@ const restaurant = {
   },
 };
 
+const airline = 'Tap Air Portugal';
+const plane = 'A320';
+
+console.log(plane[0]);
+console.log(plane[1]);
+console.log('B354'[0]);
+console.log(airline.length);
+console.log('B354'.length);
+
+// Strings also have methods
+console.log(airline.indexOf('r'));
+console.log(airline.lastIndexOf('r'));
+console.log(airline.indexOf('portugal'));
+
+// What can we catually do with these indexes? Why are they useful?
+// One good usecase is to extract part of the string using the slice method and the slice method needs indexes as arguments
+
+console.log(airline.slice(4, 7));
+console.log(airline.slice(2));
+
+console.log(airline.slice(0, airline.indexOf(' ')));
+console.log(airline.slice(airline.lastIndexOf(' ') + 1));
+
+console.log(airline.slice(-2));
+console.log(airline.slice(-1));
+
+const checkMiddleSeat = function (seat) {
+  const s = seat.slice(-1);
+  if (s === 'B' || s === 'E') console.log('You got the middle seat 😬');
+  else console.log('You got lucky 🤗');
+};
+
+checkMiddleSeat('11B');
+checkMiddleSeat('1C');
+checkMiddleSeat('20E');
+checkMiddleSeat('5F');
+
+console.log(new String('Jonas'));
+console.log(typeof new String('Jonas'));
+
+console.log(typeof new String('Jonas').slice(1));
 /*
 
 // Coding Challenge #3
