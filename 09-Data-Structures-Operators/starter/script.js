@@ -55,6 +55,22 @@ const restaurant = {
   },
 };
 
+const airline = 'TAP Air Portugual';
+
+console.log(airline.toLowerCase());
+console.log(airline.toUpperCase());
+
+// Fix Capitalization in Name
+
+const passenger = 'naMRatA';
+
+const passengerLower = passenger.toLowerCase();
+const passengerCorrect =
+  passengerLower[0].toUpperCase() + passengerLower.slice(1);
+console.log(passengerCorrect);
+/*
+
+// Working With Airlines- Part 1
 const airline = 'Tap Air Portugal';
 const plane = 'A320';
 
@@ -96,6 +112,8 @@ console.log(new String('Jonas'));
 console.log(typeof new String('Jonas'));
 
 console.log(typeof new String('Jonas').slice(1));
+*/
+
 /*
 
 // Coding Challenge #3
