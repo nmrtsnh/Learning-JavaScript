@@ -1,11 +1,5 @@
 'use strict';
 
-/*
-// Data needed for a later exercise
-const flights =
-  '_Delayed_Departure;fao93766109;txl2133758440;11:25+_Arrival;bru0943384722;fao93766109;11:45+_Delayed_Arrival;hel7439299980;fao93766109;12:05+_Departure;fao93766109;lis2323639855;12:30';
-  */
-
 // Data needed for first part of the section
 const weekdays = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
 const openingHours = {
@@ -55,6 +49,146 @@ const restaurant = {
   },
 };
 
+// String Method Practice
+const flights =
+  '_Delayed_Departure;fao93766109;txl2133758440;11:25+_Arrival;bru0943384722;fao93766109;11:45+_Delayed_Arrival;hel7439299980;fao93766109;12:05+_Departure;fao93766109;lis2323639855;12:30';
+
+// 🔴 Delayed Departure from FAO to TXL (11h25)
+//          Arrival from BRU to FAO (11h45)
+// 🔴 Delayed Arrival from HEL to FAO (12:05)
+//          Departure from FAO to LIS (12h30)
+
+// console.log(flights.split('+'));
+
+const getCode = str => str.slice(0, 3).toUpperCase();
+
+for (const flight of flights.split('+')) {
+  const [type, from, to, time] = flight.split(';');
+  const output = `${type.startsWith('_Delayed') ? '🔴' : ' '}${type.replaceAll(
+    '_',
+    ' '
+  )} from ${getCode(from)} to ${getCode(to)} (${time.replace(
+    ':',
+    'h'
+  )})`.padStart(45);
+  console.log(output);
+}
+
+/*
+/// Coding Challenge #4
+Write a program that receives a list of variable names written in underscore_case and convert them to camelCase.
+
+The input will come from a textarea inserted into the DOM (see code below to
+insert the elements), and conversion will happen when the button is pressed.
+
+Test data (pasted to textarea, including spaces):
+underscore_case
+first_name
+Some_Variable
+ calculate_AGE
+delayed_departure
+
+Should produce this output (5 separate console.log outputs):
+underscoreCase ✅
+firstName ✅✅
+someVariable ✅✅✅
+calculateAge ✅✅✅✅
+delayedDeparture ✅✅✅✅✅
+
+Hints:
+- Remember which character defines a new line in the textarea �
+- The solution only needs to work for a variable made out of 2 words, like a_b
+- Start without worrying about the ✅. Tackle that only after you have the variable name conversion working �
+- This challenge is difficult on purpose, so start watching the solution in case
+you're stuck. Then pause and continue!
+
+Afterwards, test with your own test data!
+*/
+
+/*
+// Solution
+
+document.body.append(document.createElement('textarea'));
+document.body.append(document.createElement('button'));
+
+document.querySelector('button').addEventListener('click', function () {
+  const text = document.querySelector('textarea').value;
+  const rows = text.split('\n');
+  console.log(rows);
+
+  for (const [i, row] of rows.entries()) {
+    const [first, second] = row.toLowerCase().trim().split('_');
+    const output = `${first}${second.replace(
+      second[0],
+      second[0].toUpperCase()
+    )}`;
+    console.log(`${output.padEnd(20)}${'✅'.repeat(i + 1)}`);
+  }
+});
+*/
+
+/*
+////////////////////////////////
+// Working With String - Part 3
+
+// Split and Join
+
+console.log('a+very+nice+string'.split('+'));
+console.log('Namrata Sinha'.split(' '));
+
+const [firstName, lastName] = 'Namrata Sinha'.split(' ');
+
+const newName = ['Ms', firstName, lastName.toUpperCase()].join(' ');
+console.log(newName);
+
+const capitalizeName = function (name) {
+  const names = name.split(' ');
+  const namesUpper = [];
+
+  for (const n of names) {
+    // namesUpper.push(n[0].toUpperCase() + n.slice(1));
+    namesUpper.push(n.replace(n[0], n[0].toUpperCase()));
+  }
+  console.log(namesUpper.join(' '));
+};
+
+capitalizeName('jessica ann smith davis');
+capitalizeName('namrata sinha');
+
+// Padding
+
+const message = 'Go to gate number 23';
+console.log(message.padStart(25, '+').padEnd(35, '+'));
+console.log('Namrata'.padStart(25, '+').padEnd(35, '+'));
+
+const maskCreditCard = function (number) {
+  const str = number + '';
+  const last = str.slice(-4);
+  return last.padStart(str.length, '*');
+};
+
+console.log(maskCreditCard(17396579));
+console.log(maskCreditCard('368499789364837690'));
+console.log(maskCreditCard(59406384649));
+
+// Repeat Method
+const message2 = 'Bad weather, all departures delayed... ';
+console.log(message2.repeat(5));
+
+const planesInline = function (n) {
+  console.log(`There are ${n} planes in line ${'🛩'.repeat(n)}`);
+};
+
+planesInline(5);
+planesInline(3);
+planesInline(6);
+*/
+
+/*
+///////////////////////////////////////
+
+// Working With Strings - Part 2
+
 const airline = 'TAP Air Portugual';
 
 console.log(airline.toLowerCase());
@@ -68,9 +202,62 @@ const passengerLower = passenger.toLowerCase();
 const passengerCorrect =
   passengerLower[0].toUpperCase() + passengerLower.slice(1);
 console.log(passengerCorrect);
-/*
 
-// Working With Airlines- Part 1
+// Comparing Emails
+const email = 'hello@namrata.com';
+const loginEmail = ' Hello@namrata.com \n';
+
+// const lowerEmail = loginEmail.toLowerCase();
+// const trimmedEmail = loginEmail.trim();
+// console.log(trimmedEmail);
+
+const normalizedEmail = loginEmail.toLowerCase().trim();
+console.log(normalizedEmail);
+
+console.log(email === normalizedEmail);
+
+// Replacing
+
+const priceGB = '288,64€';
+const priceUS = priceGB.replace('€', '$').replace(',', '.');
+console.log(priceUS);
+
+const announcement =
+  'All passengers come to boarding door 23. Boarding door 23';
+
+console.log(announcement.replaceAll('door', 'gate'));
+
+// Booleans
+
+const plane = 'Airbus A320neo';
+console.log(plane.includes('A320'));
+console.log(plane.includes('Boeing'));
+console.log(plane.startsWith('Air'));
+
+if (plane.startsWith('Air') && plane.endsWith('neo')) {
+  console.log('Part of the new Airbus family');
+}
+
+// Practice Example
+
+const checkBaggage = function (items) {
+  const baggage = items.toLowerCase();
+  if (baggage.includes('knife') || baggage.includes('gun')) {
+    console.log('You are NOT allowed');
+  } else {
+    console.log('Welcome Aboard');
+  }
+};
+
+checkBaggage('I have a Laptop, some Food, and a Pocket knife');
+checkBaggage('I have snacks and camera');
+checkBaggage('I have some snacks, camera, and a gun for protection');
+*/
+
+/*
+///////////////////////////////////////
+
+// Working With Strings- Part 1
 const airline = 'Tap Air Portugal';
 const plane = 'A320';
 
