@@ -20,10 +20,10 @@ const account1 = {
     '2019-12-23T07:42:02.383Z',
     '2020-01-28T09:15:04.904Z',
     '2020-04-01T10:17:24.185Z',
-    '2021-05-08T14:11:59.604Z',
-    '2021-07-02T17:01:17.194Z',
-    '2021-07-03T23:36:17.929Z',
-    '2021-07-08T10:51:36.790Z',
+    '2022-03-20T14:11:59.604Z',
+    '2022-03-21T17:01:17.194Z',
+    '2022-03-22T23:36:17.929Z',
+    '2022-03-23T10:51:36.790Z',
   ],
   currency: 'EUR',
   locale: 'pt-PT', // de-DE
@@ -39,17 +39,36 @@ const account2 = {
     '2019-11-01T13:15:33.035Z',
     '2019-11-30T09:48:16.867Z',
     '2019-12-25T06:04:23.907Z',
-    '2020-01-25T14:18:46.235Z',
-    '2020-02-05T16:33:06.386Z',
-    '2020-04-10T14:43:26.374Z',
-    '2020-06-25T18:49:59.371Z',
-    '2020-07-26T12:01:20.894Z',
+    '2022-01-25T14:18:46.235Z',
+    '2022-02-05T16:33:06.386Z',
+    '2022-03-20T14:43:26.374Z',
+    '2022-03-22T18:49:59.371Z',
+    '2022-03-23T12:01:20.894Z',
   ],
   currency: 'USD',
   locale: 'en-US',
 };
+const account3 = {
+  owner: 'Namrata Sinha',
+  movements: [4000, 3200, -100, -790, -4610, -1000, 9500, -10],
+  interestRate: 1.5,
+  pin: 3333,
 
-const accounts = [account1, account2];
+  movementsDates: [
+    '2019-11-01T13:15:33.035Z',
+    '2019-11-30T09:48:16.867Z',
+    '2019-12-25T06:04:23.907Z',
+    '2022-01-25T14:18:46.235Z',
+    '2022-02-05T16:33:06.386Z',
+    '2022-03-20T14:43:26.374Z',
+    '2022-03-22T18:49:59.371Z',
+    '2022-03-23T12:01:20.894Z',
+  ],
+  currency: 'INR',
+  locale: 'hi-IN',
+};
+
+const accounts = [account1, account2, account3];
 
 /////////////////////////////////////////////////
 // Elements
@@ -81,22 +100,23 @@ const inputClosePin = document.querySelector('.form__input--pin');
 /////////////////////////////////////////////////
 // Functions
 
-const formatMovementDate = function (date, locale) {
+const formatMovements = function (date, locale) {
   const calcDaysPassed = (date1, date2) =>
     Math.round(Math.abs(date2 - date1) / (1000 * 60 * 60 * 24));
 
   const daysPassed = calcDaysPassed(new Date(), date);
   console.log(daysPassed);
 
-  if (daysPassed === 0) return 'Today';
-  if (daysPassed === 1) return 'Yesterday';
-  if (daysPassed <= 7) return `${daysPassed} days ago`;
+  // if (daysPassed === 0) return 'Today';
+  // if (daysPassed === 1) return 'Yesterday';
+  // if (daysPassed <= 7) return `${daysPassed} days ago`;
+  // else {
+  //   const day = `${date.getDate()}`.padStart(2, 0);
+  //   const month = `${date.getMonth() + 1}`.padStart(2, 0);
+  //   const year = date.getFullYear();
 
-  // const day = `${date.getDate()}`.padStart(2, 0);
-  // const month = `${date.getMonth() + 1}`.padStart(2, 0);
-  // const year = date.getFullYear();
-  // return `${day}/${month}/${year}`;
-
+  //   return `${day}/${month}/${year}`;
+  // }
   return new Intl.DateTimeFormat(locale).format(date);
 };
 
@@ -118,7 +138,7 @@ const displayMovements = function (acc, sort = false) {
     const type = mov > 0 ? 'deposit' : 'withdrawal';
 
     const date = new Date(acc.movementsDates[i]);
-    const displayDate = formatMovementDate(date, acc.locale);
+    const displayDate = formatMovements(date, acc.locale);
 
     const formattedMov = formatCur(mov, acc.locale, acc.currency);
 
@@ -128,7 +148,6 @@ const displayMovements = function (acc, sort = false) {
       i + 1
     } ${type}</div>
     <div class="movements__date">${displayDate}</div>
-
         <div class="movements__value">${formattedMov}</div>
       </div>
     `;
@@ -139,7 +158,6 @@ const displayMovements = function (acc, sort = false) {
 
 const calcDisplayBalance = function (acc) {
   acc.balance = acc.movements.reduce((acc, mov) => acc + mov, 0);
-
   labelBalance.textContent = formatCur(acc.balance, acc.locale, acc.currency);
 };
 
@@ -187,37 +205,38 @@ const updateUI = function (acc) {
   calcDisplaySummary(acc);
 };
 
-const startLogOutTimer = function () {
+const setLogoutTimer = function () {
   const tick = function () {
     const min = String(Math.trunc(time / 60)).padStart(2, 0);
     const sec = String(time % 60).padStart(2, 0);
-
+    // In each call, print the remaining time to UI
     labelTimer.textContent = `${min}:${sec}`;
 
+    // When 0 seconds, stop timer and logut user.
     if (time === 0) {
       clearInterval(timer);
-      labelWelcome.textContent = 'Log in to get started';
+      labelWelcome.textContent = 'Login to get started';
       containerApp.style.opacity = 0;
     }
+    // Decrease is
     time--;
   };
-
-  let time = 120;
-
+  // Set time to 5 minutes
+  let time = 10;
+  // Call the timer every Seconds
   tick();
-
   const timer = setInterval(tick, 1000);
-  return timer;
 };
-
 ///////////////////////////////////////
 // Event handlers
-let currentAccount, timer;
+let currentAccount;
 
-//// FAKE ALWAYS LOGGED IN
+// FAKE ALAWAYS LOGGED IN
 // currentAccount = account1;
 // updateUI(currentAccount);
 // containerApp.style.opacity = 100;
+
+// Experimenting API
 
 btnLogin.addEventListener('click', function (e) {
   // Prevent form from submitting
@@ -235,8 +254,7 @@ btnLogin.addEventListener('click', function (e) {
     }`;
     containerApp.style.opacity = 100;
 
-    ///Create current date and time
-
+    // Create current date and time
     const now = new Date();
     const options = {
       hour: 'numeric',
@@ -246,7 +264,6 @@ btnLogin.addEventListener('click', function (e) {
       year: 'numeric',
       // weekday: 'long',
     };
-
     // const locale = navigator.language;
     // console.log(locale);
 
@@ -254,20 +271,20 @@ btnLogin.addEventListener('click', function (e) {
       currentAccount.locale,
       options
     ).format(now);
-
+    // const now = new Date();
     // const day = `${now.getDate()}`.padStart(2, 0);
     // const month = `${now.getMonth() + 1}`.padStart(2, 0);
     // const year = now.getFullYear();
-    // const hour = `${now.getHours()}`.padStart(2, 0);
-    // const min = `${now.getMinutes()}`.padStart(2, 0);
-    // labelDate.textContent = `${day}/${month}/${year}, ${hour}:${min}`;
+    // const hours = `${now.getHours()}`.padStart(2, 0);
+    // const minutes = `${now.getMinutes()}`.padStart(2, 0);
+
+    // labelDate.textContent = `${day}/${month}/${year}, ${hours}:${minutes}`;
 
     // Clear input fields
     inputLoginUsername.value = inputLoginPin.value = '';
     inputLoginPin.blur();
 
-    if (timer) clearInterval(timer);
-    timer = startLogOutTimer();
+    setLogoutTimer();
 
     // Update UI
     updateUI(currentAccount);
@@ -276,6 +293,7 @@ btnLogin.addEventListener('click', function (e) {
 
 btnTransfer.addEventListener('click', function (e) {
   e.preventDefault();
+  // Number = + Number(inputTransferAmount)
   const amount = +inputTransferAmount.value;
   const receiverAcc = accounts.find(
     acc => acc.username === inputTransferTo.value
@@ -292,15 +310,18 @@ btnTransfer.addEventListener('click', function (e) {
     currentAccount.movements.push(-amount);
     receiverAcc.movements.push(amount);
 
-    //Add transfer date
+    // Add Transfer date
     currentAccount.movementsDates.push(new Date().toISOString());
     receiverAcc.movementsDates.push(new Date().toISOString());
 
     // Update UI
     updateUI(currentAccount);
 
-    clearInterval(timer);
-    timer = startLogOutTimer();
+    // Reset Timer
+    // clearInterval(timer);
+    // timer =
+
+    startLogoutTimer();
   }
 });
 
@@ -314,14 +335,11 @@ btnLoan.addEventListener('click', function (e) {
       // Add movement
       currentAccount.movements.push(amount);
 
-      //Add loan date
+      // Add Loan date
       currentAccount.movementsDates.push(new Date().toISOString());
 
       // Update UI
       updateUI(currentAccount);
-
-      clearInterval(timer);
-      timer = startLogOutTimer();
     }, 2500);
   }
   inputLoanAmount.value = '';
@@ -332,7 +350,7 @@ btnClose.addEventListener('click', function (e) {
 
   if (
     inputCloseUsername.value === currentAccount.username &&
-    +inputClosePin.value === currentAccount.pin
+    Number(inputClosePin.value) === currentAccount.pin
   ) {
     const index = accounts.findIndex(
       acc => acc.username === currentAccount.username
@@ -363,47 +381,53 @@ btnSort.addEventListener('click', function (e) {
 
 /*
 
+/////// Converting and Checking Numbers
 console.log(23 === 23.0);
 
+// Base 10 = 0 to 9 1/10 =0.1 , 3/10 = 3.333333
+// Binary Base 2 = 0 and 1
 console.log(0.1 + 0.2);
 console.log(0.1 + 0.2 === 0.3);
 
-////Conversion
+// Conversion
 console.log(Number('23'));
 console.log(+'23');
 
-///Parsing
+// Parsing
 console.log(Number.parseInt('30px', 10));
-console.log(Number.parseInt('e30', 10));
+console.log(Number.parseInt('e23'));
 
-console.log(Number.parseInt('2.5rem'));
-console.log(Number.parseFloat('2.5rem'));
+console.log(Number.parseFloat('2.3rem'));
+console.log(Number.parseInt('2.3rem'));
 
+// Checking if value is not a number
 console.log(Number.isNaN(20));
 console.log(Number.isNaN('20'));
 console.log(Number.isNaN(+'20X'));
 console.log(Number.isNaN(23 / 0));
 
+// Checking if value is a number
 console.log(Number.isFinite(20));
 console.log(Number.isFinite('20'));
 console.log(Number.isFinite(+'20X'));
 console.log(Number.isFinite(23 / 0));
 
 console.log(Number.isInteger(23));
-console.log(Number.isInteger(23.0));
+console.log(Number.isInteger('23'));
 console.log(Number.isInteger(23 / 0));
 */
 
 /*
-console.log(Math.sqrt(25));
+// Math and Rounding
+console.log(Math.sqrt(22));
 console.log(25 ** (1 / 2));
 console.log(8 ** (1 / 3));
 
-console.log(Math.max(5, 18, 23, 11, 2));
-console.log(Math.max(5, 18, '23', 11, 2));
-console.log(Math.max(5, 18, '23X', 11, 2));
+console.log(Math.max(2, 5, 3, 4, 53, 5, 4, 2, 454, 5, 34, 4));
+console.log(Math.max(2, 3, 4, 1, 5, '24', 5, 4, 5, 3));
+console.log(Math.max(2, 3, 4, 1, 4, '30px', 4, 3));
 
-console.log(Math.min(5, 18, 23, 11, 2));
+console.log(Math.min(1, 6, 3, 1, 3));
 
 console.log(Math.PI * Number.parseFloat('10px') ** 2);
 
@@ -411,29 +435,34 @@ console.log(Math.trunc(Math.random() * 6) + 1);
 
 const randomInt = (min, max) =>
   Math.floor(Math.random() * (max - min) + 1) + min;
-//// 0....1 ->0...(max - min) -> min...max
-
+// 0...1 -> 0... (max-min) -> min...max
 console.log(randomInt(10, 20));
 
-console.log(Math.round(23.3));
-console.log(Math.round(23.9));
+// Rounding Integers
+console.log(Math.round(20.1));
+console.log(Math.round(20.9));
 
-console.log(Math.ceil(23.3));
-console.log(Math.ceil(23.9));
+console.log(Math.ceil(20.1));
+console.log(Math.ceil(20.9));
 
-console.log(Math.floor(23.3));
-console.log(Math.floor('23.9'));
+console.log(Math.trunc(20.1));
+console.log(Math.trunc(20.9));
 
-console.log(Math.trunc(-23.3));
-console.log(Math.floor(-23.3));
+console.log(Math.floor(20.1));
+console.log(Math.floor(20.9));
 
+console.log(Math.floor(-20.1));
+console.log(Math.trunc(-20.1));
+
+// Rounding Decimals
 console.log((2.7).toFixed(0));
 console.log((2.7).toFixed(3));
-console.log((2.345).toFixed(2));
-console.log(+(2.345).toFixed(2));
+console.log(+(2.3456).toFixed(2));
 */
 
 /*
+// The Remainder Operator
+
 console.log(5 % 2);
 console.log(5 / 2); // 5 = 2 * 2 + 1
 
@@ -447,19 +476,42 @@ console.log(7 % 2);
 console.log(7 / 2);
 
 const isEven = n => n % 2 === 0;
-console.log(isEven(8));
-console.log(isEven(23));
-console.log(isEven(514));
+console.log(isEven(6));
+console.log(isEven(5));
+console.log(isEven(26382937628));
+console.log(isEven(37793836293));
 
 labelBalance.addEventListener('click', function () {
   [...document.querySelectorAll('.movements__row')].forEach(function (row, i) {
-    if (i % 2 === 0) row.style.backgroundColor = 'orangered';
-    if (i % 3 === 0) row.style.backgroundColor = 'blue';
+    if (i % 2 === 0) row.style.backgroundColor = 'orange';
+    if (i % 3 === 0) row.style.backgroundColor = 'green';
   });
 });
 */
 
 /*
+//// Numeric Seperators
+const diameter = 234_268_000_000;
+console.log(diameter);
+
+const price = 45_99;
+console.log(price);
+
+const transferFee1 = 23_00;
+const transferFee2 = 2_300;
+console.log(transferFee1);
+console.log(transferFee2);
+
+const PI = 3.1415;
+console.log(PI);
+
+console.log(Number('34244'));
+console.log(Number('3424_34'));
+console.log(Number.parseInt('452_23'));
+*/
+
+/*
+////BigInt
 console.log(2 ** 53 - 1);
 console.log(Number.MAX_SAFE_INTEGER);
 console.log(2 ** 53 + 1);
@@ -467,47 +519,54 @@ console.log(2 ** 53 + 2);
 console.log(2 ** 53 + 3);
 console.log(2 ** 53 + 4);
 
-console.log(346929749020748294390483723948748374837648493947n);
-console.log(BigInt(45638));
+console.log(4458483774839273738929378393n);
+console.log(BigInt(445));
 
-const huge = 4739394648390474830384940303n;
-const num = 23;
-console.log(huge + BigInt(num));
+//Operations
+console.log(1000n + 1000n);
+console.log(2739297392983739239736473893746483837464n + 36643737n);
 
-console.log(20n > 15);
+const huge = 457364738647373n;
+const num = 546;
+console.log(huge * BigInt(num));
+
+// Exceptions
+console.log(20n > 10);
 console.log(20n === 20);
 console.log(typeof 20n);
-console.log(20n == '20');
+console.log(20n == 20);
 
 console.log(huge + 'is really big');
 
-console.log(10n / 3n);
+// Divisions
+console.log(11n / 3n);
+console.log(10 / 3);
 */
 
+// Creating Dates
 /*
 const now = new Date();
 console.log(now);
 
-console.log(new Date('Jul 08 2021 22:31:02'));
-console.log(new Date('December 24, 2015'));
-
-console.log(new Date(account1.movementsDates[0]));
+console.log(new Date('Mar 23 2022 17:09:53'));
+console.log(new Date('December 31, 2021'));
+console.log(account1.movementsDates[0]);
 
 console.log(new Date(2037, 10, 19, 15, 23, 5));
-console.log(new Date(2037, 10, 31));
+console.log(new Date(2037, 10, 26));
 
 console.log(new Date(0));
 console.log(new Date(3 * 24 * 60 * 60 * 1000));
 */
 
 /*
-
+// Working With Dates
 const future = new Date(2037, 10, 19, 15, 23);
 console.log(future);
 console.log(future.getFullYear());
 console.log(future.getMonth());
-console.log(future.getDate());
 console.log(future.getDay());
+console.log(future.getDate());
 console.log(future.getHours());
 console.log(future.getMinutes());
 console.log(future.getSeconds());
@@ -529,13 +588,13 @@ console.log(+future);
 const calcDaysPassed = (date1, date2) =>
   Math.abs(date2 - date1) / (1000 * 60 * 60 * 24);
 
-const days1 = calcDaysPassed(new Date(2037, 3, 14), new Date(2037, 3, 24));
+const days1 = calcDaysPassed(new Date(2037, 3, 14), new Date(2037, 3, 4));
 console.log(days1);
-
 */
 
 /*
-const num = 3884764.23;
+// Internationalizing Numbers 
+const num = 323233.23;
 
 const options = {
   style: 'currency',
@@ -544,30 +603,31 @@ const options = {
   // useGrouping: false,
 };
 
-console.log('US:      ', new Intl.NumberFormat('en-Us', options).format(num));
-console.log('Germany: ', new Intl.NumberFormat('de-DE', options).format(num));
-console.log('India:   ', new Intl.NumberFormat('hi-IN', options).format(num));
-console.log(
-  navigator.language,
-  new Intl.NumberFormat(navigator.language, options).format(num)
-);
+console.log('US:     ', new Intl.NumberFormat('en-US', options).format(num));
+console.log('Germany:  ', new Intl.NumberFormat('de-DE', options).format(num));
+console.log('Syria: ', new Intl.NumberFormat('ar-SY', options).format(num));
+console.log('India: ', new Intl.NumberFormat('hi-IN', options).format(num));
 */
 
 /*
+// setTimeout
 const ingredients = ['olives', 'spinach'];
-
 const pizzaTimer = setTimeout(
-  (ing1, ing2) => console.log(`Here is your pizza with ${ing1} and ${ing2} 🍕`),
+  (ing1, ing2) => console.log(`Here is your Pizza 🍕 with ${ing1} and ${ing2}`),
   3000,
   ...ingredients
 );
-console.log('...waiting');
+console.log('Waiting.....');
 
 if (ingredients.includes('spinach')) clearTimeout(pizzaTimer);
 
+// setInterval
 setInterval(function () {
-  const now = new Date();
-  console.log(now);
-}, 1000);
+  const date = new Date();
+  const hours = date.getHours();
+  const minutes = date.getMinutes();
+  const seconds = date.getSeconds();
 
+  console.log(`${hours}:${minutes}:${seconds} `);
+}, 1000);
 */
