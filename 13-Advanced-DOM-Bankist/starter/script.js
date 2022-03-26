@@ -30,11 +30,13 @@ document.addEventListener('keydown', function (e) {
   }
 });
 
+/*
+
 // Selecting Elements
 
-console.log(document.documentElement);
-console.log(document.head);
-console.log(document.body);
+// console.log(document.documentElement);
+// console.log(document.head);
+// console.log(document.body);
 
 const header = document.querySelector('.header');
 const allSections = document.querySelectorAll('.section');
@@ -42,13 +44,13 @@ console.log(allSections);
 
 document.getElementById('section--1');
 const allButtons = document.getElementsByTagName('button');
-console.log(allButtons);
+// console.log(allButtons);
 
-console.log(document.getElementsByClassName('btn'));
+// console.log(document.getElementsByClassName('btn'));
 
 // Creating and inserting elements
 const message = document.createElement('div');
-message.classList.add('cookie--message');
+message.classList.add('cookie-message');
 message.textContent = 'We use cookie for improved functionality and analytics';
 message.innerHTML =
   'We use cookie for improved functionality and analytice.  <button class ="btn btn--close-cookie">Got it!</button>';
@@ -68,3 +70,115 @@ document
     message.remove();
     // message.parentElement.removeChild(message);
   });
+
+message.style.backgroundColor = '#37383d';
+message.style.width = '120%';
+
+console.log(message.style.color);
+console.log(message.style.backgroundColor);
+
+console.log(getComputedStyle(message).color);
+console.log(getComputedStyle(message).height);
+
+message.style.height =
+  Number.parseFloat(getComputedStyle(message).height, 10) + 30 + 'px';
+
+document.documentElement.style.setProperty('--color-primary', 'orangered');
+
+// Attributes
+const logo = document.querySelector('.nav__logo');
+console.log(logo.alt);
+console.log(logo.className);
+
+logo.alt = 'Beautiful minimalist deisgn';
+
+// Non - Standard
+console.log(logo.designer);
+console.log(logo.getAttribute('designer'));
+
+console.log(logo.src);
+console.log(logo.getAttribute('src'));
+
+const link = document.querySelector('.nav__link--btn');
+console.log(link.href);
+console.log(link.getAttribute('href'));
+
+// Data Attributes
+console.log(logo.dataset.versionNumber);
+
+// Classes
+logo.classList.add('c');
+logo.classList.remove('ccd');
+logo.classList.toggle('e');
+logo.classList.contains('e');
+
+logo.classList = 'Jonas'; // Don't use
+*/
+
+const btnScrollTo = document.querySelector('.btn--scroll-to');
+const section1 = document.querySelector('#section--1');
+
+btnScrollTo.addEventListener('click', function (e) {
+  const s1coords = section1.getBoundingClientRect();
+  console.log(s1coords);
+
+  console.log(e.target.getBoundingClientRect());
+
+  console.log('Current Scroll (X/Y)', window.pageXOffset, window.pageYOffset);
+
+  console.log(
+    'height/width view port',
+    document.documentElement.clientHeight,
+    document.documentElement.clientWidth
+  );
+
+  // window.scrollTo(
+  //   s1coords.left + window.pageXOffset,
+  //   s1coords.top + window.pageYOffset
+  // );
+
+  // window.scrollTo({
+  //   left: s1coords.left + window.pageXOffset,
+  //   top: s1coords.top + window.pageYOffset,
+  //   behavior: 'smooth',
+  // });
+
+  section1.scrollIntoView({ behavior: 'smooth' });
+});
+
+/*
+const h1 = document.querySelector('h1');
+
+const alerth1 = function () {
+  alert('onmouseenter: Great! Your are reading first heading');
+  // h1.removeEventListener('mouseenter', alerth1);
+};
+h1.addEventListener('mouseenter', alerth1);
+
+setTimeout(() => h1.removeEventListener('mouseenter', alerth1), 5000);
+// h1.onmouseenter = function (e) {
+//   alert('onmouseenter: Great! Your are reading first heading');
+// };
+*/
+
+// rgb(255,255,255)
+
+const randomInt = (min, max) =>
+  Math.floor(Math.random() * (max - min + 1) + min);
+// console.log(randomInt(0, 255));
+
+const randomColor = () =>
+  `rgb(${randomInt(0, 255)},${randomInt(0, 255)},${randomInt(0, 255)})`;
+console.log(randomColor(0, 255));
+
+document.querySelector('.nav__link').addEventListener('click', function (e) {
+  this.style.backgroundColor = randomColor();
+});
+
+document.querySelector('.nav__links').addEventListener('click', function () {
+  this.style.backgroundColor = randomColor();
+});
+
+document.querySelector('.nav').addEventListener('click', function () {
+  this.style.backgroundColor = randomColor();
+});
