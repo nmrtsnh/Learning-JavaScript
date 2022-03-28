@@ -221,7 +221,20 @@ document.querySelector('.nav').addEventListener('click', function (e) {
 const h1 = document.querySelector('h1');
 console.log(h1);
 
-// Going Downdwards
+// Going Downdwards: child
 
 console.log(h1.querySelectorAll('.highlight'));
 console.log(h1.childNodes);
+console.log(h1.children);
+h1.firstElementChild.style.color = 'white';
+h1.lastElementChild.style.color = 'orangered';
+
+// Going Upwards: parent
+console.log(h1.parentNode);
+console.log(h1.parentElement);
+
+h1.closest('.header').style.background = 'var(--color-tertiary)';
+
+h1.closest('h1').style.background = 'var(--color-secondary-darker)';
+
+// Going Sideways: Siblings
